@@ -2,10 +2,39 @@
 //
 
 #include <iostream>
-
-int main()
-{
-    std::cout << "Hello World!\n";
+#include<vector>
+#include <algorithm>
+using namespace std;
+	class Solution {
+	public:
+		bool canJump(vector<int>& nums)
+		{
+			int nSize = nums.size();
+			if (nSize == 1)
+				return true;
+			if (nSize > 1)
+			{
+				int nPos=0;
+				int i = 0;
+				while  (i <= nSize-1)
+				{
+					nPos =max(nPos,i + nums[i]);
+					if (nPos >= nSize - 1)
+						return true;
+					if ((nums[i] == 0) && (i >= nPos))
+						return false;
+					i++;
+				}
+				
+			}
+			return false;
+		}
+	};
+	int main()
+	{
+		vector<int> nums = {3, 0, 8, 2, 0, 0, 1};
+	Solution slnObj;
+    std::cout << slnObj.canJump(nums);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
